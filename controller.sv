@@ -83,20 +83,20 @@ module controller(
 
   always_comb
      case(op)                                     // non-R-type instructions
-        `LW: controls <= 10'b 1_10_01_00_1_1_0;     // LW
-        `SW: controls <= 10'b 0_xx_xx_00_1_1_1;     // SW
+        `LW: controls = 10'b 1_10_01_00_1_1_0;     // LW
+        `SW: controls = 10'b 0_xx_xx_00_1_1_1;     // SW
         `ADDI,                                        // ADDI
         `ADDIU,                                        // ADDIU
         `SLTI,
-        `SLTIU: controls <= 10'b 1_01_01_00_1_1_0;     
-        `ORI: controls <= 10'b 1_01_01_00_1_0_0;
-        `LUI: controls <= 10'b 1_01_01_10_1_x_0;
+        `SLTIU: controls = 10'b 1_01_01_00_1_1_0;     
+        `ORI: controls = 10'b 1_01_01_00_1_0_0;
+        `LUI: controls = 10'b 1_01_01_10_1_x_0;
         `ANDI,
-        `XORI: controls <= 10'b 1_01_01_00_1_0_0;
+        `XORI: controls = 10'b 1_01_01_00_1_0_0;
         `BEQ,
-        `BNE: controls <= 10'b 0_xx_xx_00_0_1_0;
-        `J: controls <= 10'b 0_xx_xx_xx_x_x_0;
-        `JAL: controls <= 10'b 1_00_10_xx_x_x_0;
+        `BNE: controls = 10'b 0_xx_xx_00_0_1_0;
+        `J: controls = 10'b 0_xx_xx_xx_x_x_0;
+        `JAL: controls = 10'b 1_00_10_xx_x_x_0;
        
       6'b000000:                                    
          case(func)                              // R-type
@@ -109,12 +109,12 @@ module controller(
             `NOR,
             `SLT,
             `SLTU,
-            `SLLV: controls <= 10'b 1_01_00_00_0_x_0;
+            `SLLV: controls = 10'b 1_01_00_00_0_x_0;
             `SLL,
             `SRL,
-            `SRA: controls <= 10'b 1_01_00_01_0_x_0;
-            `JR: controls <= 10'b 0_xx_xx_xx_x_x_0;
-            default:   controls <= 10'b 0_xx_xx_xx_x_x_0; // unknown instruction, turn off register and memory writes
+            `SRA: controls = 10'b 1_01_00_01_0_x_0;
+            `JR: controls = 10'b 0_xx_xx_xx_x_x_0;
+            default:   controls = 10'b 0_xx_xx_xx_x_x_0; // unknown instruction, turn off register and memory writes
          endcase
       default: controls = 10'b 0_xx_xx_xx_x_x_0;         // unknown instruction, turn off register and memory writes
     endcase
@@ -125,31 +125,31 @@ module controller(
         `LW,                          // LW
         `SW,                          // SW
         `ADDI,                          // ADDI
-        `ADDIU: alufn <= 5'b 0xx01;      // ADDIU
-        `SLTI: alufn <= 5'b 1x011;      // SLTI
-        `SLTIU: alufn <= 5'b 1x111;
+        `ADDIU: alufn = 5'b 0xx01;      // ADDIU
+        `SLTI: alufn = 5'b 1x011;      // SLTI
+        `SLTIU: alufn = 5'b 1x111;
         `BEQ,                          // BEQ
-        `BNE: alufn <= 5'b 1xx01;             // BNE
-        `ORI: alufn <= 5'b x0100;
-        `LUI: alufn <= 5'b x0010;
-        `ANDI: alufn <= 5'b x0000;
-        `XORI: alufn <= 5'b x1000;
+        `BNE: alufn = 5'b 1xx01;             // BNE
+        `ORI: alufn = 5'b x0100;
+        `LUI: alufn = 5'b x0010;
+        `ANDI: alufn = 5'b x0000;
+        `XORI: alufn = 5'b x1000;
       6'b000000:                      
          case(func)                 // R-type
             `ADD,
-            `ADDU: alufn <= 5'b 0xx01; // ADD and ADDU
-            `SUB: alufn <= 5'b 1xx01; // SUB
-            `AND: alufn <= 5'b x0000;
-            `OR: alufn <= 5'b x0100;
-            `XOR: alufn <= 5'b x1000;
-            `NOR: alufn <= 5'b x1100;
-            `SLT: alufn <= 5'b 1x011;
-            `SLTU: alufn <= 5'b 1x111;
+            `ADDU: alufn = 5'b 0xx01; // ADD and ADDU
+            `SUB: alufn = 5'b 1xx01; // SUB
+            `AND: alufn = 5'b x0000;
+            `OR: alufn = 5'b x0100;
+            `XOR: alufn = 5'b x1000;
+            `NOR: alufn = 5'b x1100;
+            `SLT: alufn = 5'b 1x011;
+            `SLTU: alufn = 5'b 1x111;
             `SLL,
-            `SLLV: alufn <= 5'b x0010;
-            `SRL: alufn <= 5'b x1010;
-            `SRA: alufn <= 5'b X1110;
-            default:   alufn <= 5'b xxxxx; // unknown func
+            `SLLV: alufn = 5'b x0010;
+            `SRL: alufn = 5'b x1010;
+            `SRA: alufn = 5'b X1110;
+            default:   alufn = 5'b xxxxx; // unknown func
          endcase
       default: alufn = 5'b xxxxx;         // for all other instructions, alufn is a don't-care.
     endcase
