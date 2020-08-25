@@ -116,7 +116,7 @@ module controller(
             `JR: controls <= 10'b 0_xx_xx_xx_x_x_0;
             default:   controls <= 10'b 0_xx_xx_xx_x_x_0; // unknown instruction, turn off register and memory writes
          endcase
-      default: controls <= 10'b 0_xx_xx_xx_x_x_0;         // unknown instruction, turn off register and memory writes
+      default: controls = 10'b 0_xx_xx_xx_x_x_0;         // unknown instruction, turn off register and memory writes
     endcase
     
 
@@ -151,7 +151,7 @@ module controller(
             `SRA: alufn <= 5'b X1110;
             default:   alufn <= 5'b xxxxx; // unknown func
          endcase
-      default: alufn <= 5'b xxxxx;         // for all other instructions, alufn is a don't-care.
+      default: alufn = 5'b xxxxx;         // for all other instructions, alufn is a don't-care.
     endcase
     
 endmodule
