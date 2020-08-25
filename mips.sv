@@ -27,7 +27,7 @@ module mips#(
 
    wire [1:0] pcsel, wdsel, wasel;
    wire [4:0] alufn;
-   wire Z, sext, bsel, dmem_wr, werf;
+   wire Z, sext, bsel, werf; // dmem_wr
    wire [1:0] asel; 
 
    controller c(.enable(enable), .op(instr[31:26]), .func(instr[5:0]), .Z(Z),
