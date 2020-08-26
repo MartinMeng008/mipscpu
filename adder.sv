@@ -27,7 +27,7 @@ module adder #(parameter N=32) (
     output wire FlagN, FlagC, FlagV
     );
     
-    wire [N:0] carry;
+    wire [32:0] carry;
     assign carry[0] = Cin;
     
     assign FlagN = Sum[N-1];
