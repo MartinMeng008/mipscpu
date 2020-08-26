@@ -25,7 +25,8 @@ module mips#(
     
 // DO NOT CHANGE
 
-   wire [1:0] pcsel, wdsel, wasel;
+   wire [1:0] pcsel;
+   wire [1:0] wdsel, wasel;
    wire [4:0] alufn;
    wire Z, sext, bsel, werf; // dmem_wr
    wire [1:0] asel; 
