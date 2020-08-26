@@ -28,6 +28,7 @@ module datapath #(
     input wire clk,
     input wire reset,
     input wire enable,
+    /* verilator lint_off UNUSED */
     input wire [31:0] instr,
     input wire [1:0] pcsel,
     input wire [1:0] wasel,
@@ -78,7 +79,7 @@ module datapath #(
     assign BT = pcPlus4 + (signImm << 2);
     assign shamt[4:0] = instr[10:6];
     assign aluA = (asel == 2'b00) ? ReadData1:
-        (asel == 2'b01) ? {27'b0, shamt}:
+                  (asel == 2'b01) ? {27'b0, shamt}:
                    32'b 0000_0001_0000; // 16
     assign aluB = bsel ? signImm : ReadData2;
     assign mem_addr = alu_result;
