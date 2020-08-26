@@ -84,8 +84,11 @@ module controller(
   always_comb
      case(op)                                     // non-R-type instructions
         `LW: controls = 10'b 1_10_01_00_1_1_0;     // LW
+        
+        // Inserted bug in SW.
         // `SW: controls = 10'b 0_xx_xx_00_1_1_1;     // SW, correct
         `SW: controls = 10'b 0_xx_xx_00_1_1_1;     // SW, buggy
+        
         `ADDI,                                        // ADDI
         `ADDIU,                                        // ADDIU
         `SLTI,
