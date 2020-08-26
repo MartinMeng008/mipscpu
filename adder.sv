@@ -103,6 +103,6 @@ module adder #(parameter N=32) (
     fulladder a30 (A[30], B[30], carry30, Sum[30], carry31);
     fulladder a31 (A[31], B[31], carry31, Sum[31], carry32);
     
-    assign carry[0:32] = {carry0, carry1, carry2, carry3, carry4, carry5, carry6, carry7, carry8, carry9, carry10, carry11, carry12, carry13, carry14, carry15, carry16, carry17, carry18, carry19, carry20, carry21, carry22, carry23, carry24, carry25, carry26, carry27, carry28, carry29, carry30, carry31, carry32};
+    assign carry[32:0] = {carry32, carry31, carry30, carry29, carry28, carry27, carry26, carry25, carry24, carry23, carry22, carry21, carry20, carry19, carry18, carry17, carry16, carry15, carry14, carry13, carry12, carry11, carry10, carry9, carry8, carry7, carry6, carry5, carry4, carry3, carry2, carry1, carry0};
 
 endmodule
