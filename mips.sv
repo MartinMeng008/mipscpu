@@ -20,7 +20,8 @@ module mips#(
     output wire mem_wr, 
     output wire [31:0] mem_addr,
     output wire [31:0] mem_writedata, 
-    input wire [31:0] mem_readdata
+    input wire [31:0] mem_readdata,
+    output wire werf
     );
     
 // DO NOT CHANGE
@@ -28,7 +29,7 @@ module mips#(
    wire [1:0] pcsel;
    wire [1:0] wdsel, wasel;
    wire [4:0] alufn;
-   wire Z, sext, bsel, werf; // dmem_wr
+   wire Z, sext, bsel; // werf; // dmem_wr
    wire [1:0] asel; 
 
    controller c(.enable(enable), .op(instr[31:26]), .func(instr[5:0]), .Z(Z),
