@@ -158,4 +158,8 @@ module controller(
       default: alufn = 5'b xxxxx;         // for all other instructions, alufn is a don't-care.
     endcase
     
+   always_comb begin
+      assert (((~(op == `SW)) || (werf == 0) || (enable == 0));
+   end
+   
 endmodule
