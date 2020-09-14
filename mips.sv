@@ -21,7 +21,7 @@ module mips#(
     output wire [31:0] mem_addr,
     output wire [31:0] mem_writedata, 
     input wire [31:0] mem_readdata,
-    input wire werf
+    // input wire werf
     );
     
 // DO NOT CHANGE
